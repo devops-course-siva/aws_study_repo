@@ -10,15 +10,15 @@ phases:
       python : 3.11
   pre_build:
     commands:
-      - pip install -r aws-cicd-project/requirements.txt
+      - pip install -r sample-flask-app/requirements.txt
       
   build:
     commands:
-      - cd aws-cicd-project
+      - cd sample-flask-app
       - echo "Building docker image"
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
-      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/aws-cicd-project:latest" .
-      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/aws-cicd-project:latest"
+      - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/sample-flask-app:latest" .
+      - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/sample-flask-app:latest"
   post_build:
     commands:
       - echo "Build is successful"
